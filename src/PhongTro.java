@@ -1,16 +1,16 @@
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.UUID;
 
 public class PhongTro {
     private String name;
 
-    private UUID maPhong = UUID.randomUUID();;
     private int price;
 
-    private LocalDate startDate = LocalDate.now();
+    private LocalDate startDate;
     private LocalDate endDate;
     private boolean checkValid = false;
+
+    private String nguoiThue;
 
     public PhongTro(String name, int price, Date endDate) {
         this.name = name;
@@ -22,11 +22,13 @@ public class PhongTro {
         this.price = price;
     }
 
-    public PhongTro(String name, int price, LocalDate endDate, boolean checkValid) {
+    public PhongTro(String name, int price, LocalDate endDate, LocalDate startDate, boolean checkValid, String nguoiThue) {
         this.name = name;
         this.price = price;
         this.endDate = endDate;
+        this.startDate = startDate;
         this.checkValid = checkValid;
+        this.nguoiThue = nguoiThue;
     }
 
     public String getName() {
@@ -45,6 +47,31 @@ public class PhongTro {
         this.price = price;
     }
 
+
+    public String getNguoiThue() {
+        return nguoiThue;
+    }
+
+    public void setNguoiThue(String nguoiThue) {
+        this.nguoiThue = nguoiThue;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
     public boolean isCheckValid() {
         return checkValid;
     }
@@ -54,9 +81,13 @@ public class PhongTro {
     }
 
     public void inThongTinPhong(){
-        String tinhTrang = this.isCheckValid() ? "Đang sử dụng" : "Đang trống";
+        String checkVali = this.getEndDate() != null && this.getStartDate() != null && this.getEndDate().isAfter(LocalDate.now()) && this.getStartDate().isBefore(LocalDate.now()) ? "và đang sử dụng" : "nhưng chưa sử dụng";
+        String tinhTrang = this.isCheckValid() ? "Đã được đặt phòng" + checkVali : "Đang trống";
         System.out.println("Thông tin phòng trọ: ");
-        System.out.println("Mã phòng: "+ this.maPhong + "- Tên phòng: " + this.name + "- giá phòng:  "
+        System.out.println("- Tên phòng: " + this.name + "- giá phòng:  "
                 + this.price + "- Ngày được thuê: " + this.startDate + "- Ngày kết thúc hợp đồng: " + this.endDate + "- Tình trạng phòng: " + tinhTrang);
+        if(this.nguoiThue != null){
+            System.out.println("Người thuê: " + this.nguoiThue);
+        }
     }
 }

@@ -12,24 +12,12 @@ public class PhongTro {
 
     private String nguoiThue;
 
-    public PhongTro(String name, int price, Date endDate) {
-        this.name = name;
-        this.price = price;
-    }
 
     public PhongTro(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
-    public PhongTro(String name, int price, LocalDate endDate, LocalDate startDate, boolean checkValid, String nguoiThue) {
-        this.name = name;
-        this.price = price;
-        this.endDate = endDate;
-        this.startDate = startDate;
-        this.checkValid = checkValid;
-        this.nguoiThue = nguoiThue;
-    }
 
     public String getName() {
         return name;
